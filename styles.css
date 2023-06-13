@@ -29,7 +29,7 @@ header {
     color: white
 }
 
-header>button {
+button {
     background-color: #f08d49;
     border: 0;
     border-radius: 10px;
@@ -43,13 +43,70 @@ header>button {
 
 main {
     display: flex;
-    justify-content: center;
+
+    flex-direction: column;
     width: 100vw;
     gap: 8px;
     padding: 8px;
 
 }
 
+.books {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+}
+
+form {
+    width: 30%;
+
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+
+
+    background-color: #1f2937;
+    border-radius: 10px;
+
+    color: white;
+
+
+
+    padding: 8px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    background-color: #111827;
+    border: 0;
+    border-radius: 10px;
+    width: 250px;
+
+    padding: 8px;
+
+    color: white
+}
+
+main>div {
+    display: flex;
+    justify-content: center;
+}
 
 
 .book {
@@ -64,6 +121,8 @@ main {
 
 
     padding: 8px;
+
+
 
 }
 

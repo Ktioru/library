@@ -1,5 +1,7 @@
 let library = []
-const main = document.getElementById("main")
+let booksNumber = 0
+const main = document.querySelector(".books")
+
 
 
 
@@ -16,52 +18,66 @@ function Book(name, author, pages, read = false, number) {
 
 }
 
-function addBookToLibrary(name, author, pages, read) {
 
-    let newBook = new Book(name, author, pages, read, library.length)
+
+function Element(elementName, className) {
+    this.element = document.createElement(elementName)
+    this.class = this.element.classList.add(className)
+}
+
+function addBookToLibrary() {
+
+    let name = document.getElementById("booksName")
+    let author = document.getElementById("author")
+    let pages = document.getElementById("numberOfPages")
+    console.log(name.value)
+
+
+    let newBook = new Book(name.value, author.value, pages.value, false, booksNumber)
     library.push(newBook)
 
     let fisicalNewBook = document.createElement("div");
     fisicalNewBook.classList.add("book")
+    fisicalNewBook.setAttribute("id", newBook.number)
 
-    let booksTextualContent = document.createElement("div")
-    booksTextualContent.classList.add("booksTextualContent")
+    booksNumber++
 
-    let bookName = document.createElement("h5");
-    bookName.classList.add("bookTitle")
+    let booksTextualContent = new Element("div", "booksTextualContent")
 
-    let onScreenAuthor = document.createElement("h5");
-    onScreenAuthor.classList.add("author")
+    let bookName = new Element("h5", "booksTitle")
 
-    let onScreenRead = document.createElement("h5");
-    onScreenRead.classList.add("read")
+    let onScreenAuthor = new Element("h5", "author")
 
-    let onScreenPages = document.createElement("div")
-    onScreenPages.classList.add("pages")
+    let onScreenRead = new Element("h5", "read")
 
-    let numberOfPages = document.createElement("h5");
-    numberOfPages.classList.add("numberOfPages")
+    let onScreenPages = new Element("div", "pages")
+
+    let numberOfPages = new Element("h5", "numberOfPages")
 
 
 
 
 
-    bookName.innerText = name
-    onScreenAuthor.innerText = author
-    onScreenRead.innerText = read
-    numberOfPages.innerText = pages
+    bookName.element.innerText = newBook.name
+    onScreenAuthor.element.innerText = newBook.author
+    onScreenRead.innerText = true
+    numberOfPages.element.innerText = newBook.pages
 
 
-    booksTextualContent.appendChild(bookName)
-    booksTextualContent.appendChild(onScreenAuthor)
-    booksTextualContent.appendChild(onScreenRead)
+    booksTextualContent.element.appendChild(bookName.element)
+    booksTextualContent.element.appendChild(onScreenAuthor.element)
+    booksTextualContent.element.appendChild(onScreenRead.element)
 
-    onScreenPages.appendChild(numberOfPages)
+    onScreenPages.element.appendChild(numberOfPages.element)
 
-    fisicalNewBook.appendChild(booksTextualContent)
-    fisicalNewBook.appendChild(onScreenPages)
+    fisicalNewBook.appendChild(booksTextualContent.element)
+    fisicalNewBook.appendChild(onScreenPages.element)
     main.appendChild(fisicalNewBook)
 
+
+    name.value = ""
+    author.value = ""
+    pages.value = ""
 
 
 
@@ -72,7 +88,11 @@ function addBookToLibrary(name, author, pages, read) {
 
 }
 
-addBookToLibrary("hey", "hey", 214, "not read")
+function deleteBook() {
+
+}
+
+
 
 console.log(library)
 
