@@ -6,6 +6,7 @@ const main = document.querySelector(".books")
 
 
 
+
 console.log(main)
 
 
@@ -20,9 +21,24 @@ function Book(name, author, pages, read = false, number) {
 
 
 
-function Element(elementName, className) {
+function Element(elementName, className, number = null) {
     this.element = document.createElement(elementName)
     this.class = this.element.classList.add(className)
+    if (className == "button") {
+        this.element.addEventListener("click", () => deleteBook(number))
+    }
+}
+
+function deleteBook(number) {
+    library.forEach(element => {
+        if (element.number == number) {
+            console.log(number)
+            let books = document.getElementsByClassName("book")
+
+            books[number].setAttribute("style", "display: none;")
+
+        }
+    });
 }
 
 function addBookToLibrary() {
@@ -36,23 +52,28 @@ function addBookToLibrary() {
     let newBook = new Book(name.value, author.value, pages.value, false, booksNumber)
     library.push(newBook)
 
-    let fisicalNewBook = document.createElement("div");
-    fisicalNewBook.classList.add("book")
-    fisicalNewBook.setAttribute("id", newBook.number)
+    let fisicalNewBook = new Element("div", "book", booksNumber)
 
-    booksNumber++
+
+
+
 
     let booksTextualContent = new Element("div", "booksTextualContent")
 
     let bookName = new Element("h5", "booksTitle")
 
-    let onScreenAuthor = new Element("h5", "author")
+    let onScreenAuthor = new Element("h6", "author")
 
     let onScreenRead = new Element("h5", "read")
 
     let onScreenPages = new Element("div", "pages")
 
     let numberOfPages = new Element("h5", "numberOfPages")
+
+    let button = new Element("button", "button", booksNumber)
+    booksNumber++
+
+    button.element.innerText = "-"
 
 
 
@@ -61,18 +82,28 @@ function addBookToLibrary() {
     bookName.element.innerText = newBook.name
     onScreenAuthor.element.innerText = newBook.author
     onScreenRead.innerText = true
-    numberOfPages.element.innerText = newBook.pages
+    numberOfPages.element.innerText = `${newBook.pages} pages`
 
-
+    booksTextualContent.element.appendChild(button.element)
     booksTextualContent.element.appendChild(bookName.element)
     booksTextualContent.element.appendChild(onScreenAuthor.element)
     booksTextualContent.element.appendChild(onScreenRead.element)
 
+    button.element.addEventListener("click", deleteBook())
+
+
     onScreenPages.element.appendChild(numberOfPages.element)
 
-    fisicalNewBook.appendChild(booksTextualContent.element)
-    fisicalNewBook.appendChild(onScreenPages.element)
-    main.appendChild(fisicalNewBook)
+
+    fisicalNewBook.element.appendChild(booksTextualContent.element)
+    fisicalNewBook.element.appendChild(onScreenPages.element)
+
+
+
+
+
+    main.appendChild(fisicalNewBook.element)
+
 
 
     name.value = ""
@@ -80,23 +111,5 @@ function addBookToLibrary() {
     pages.value = ""
 
 
-
-
-
-
-    console.log(library)
-
 }
-
-function deleteBook() {
-
-}
-
-
-
-console.log(library)
-
-
-
-
 
