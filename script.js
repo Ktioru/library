@@ -1,10 +1,7 @@
+//Library Logic
 let library = []
 let booksNumber = 0
 const main = document.querySelector(".books")
-
-
-
-
 
 
 console.log(main)
@@ -113,3 +110,25 @@ function addBookToLibrary() {
 
 }
 
+//Form Validation
+const bookInput = document.querySelector("input[name='booksName']")
+const authorInput = document.querySelector("input[name='authorName']")
+const pagesInput = document.querySelector("input[name='numberOfPages']")
+const form = document.querySelector("form")
+
+
+
+
+function checkForm() {
+    if(form.checkValidity()) {
+        addBookToLibrary()
+    } /* else {
+        if(bookInput.validity.valid == false) {
+            bookInput.setCustomValidity("Invalid Field")
+        } else if(author.validity.valid == false) {
+            bookInput.setCustomValidity("Invalid Field")
+        } else if(pagesInput.validity.valid == false) {
+            bookInput.setCustomValidity("Invalid Field")
+        } 
+    } */
+}

@@ -21,15 +21,17 @@
             <form action="">
                 <h1>Add a book</h1>
                 <div class="info">
-                    <label for="LABEL"><input type="text" name="dasda" id="booksName" placeholder="Book's Name"
-                            value=""></label>
-                    <label for="LABEL"><input type="text" name="dasda" id="author" placeholder="Author"
-                            value=""></label>
-                    <label for="LABEL"><input type="number" name="dasda" id="numberOfPages"
-                            placeholder="Number of Pages" value=""></label>
+                    <label for="booksName"><input type="text" name="booksName" id="booksName" placeholder="Book's Name"
+                            value="" required></label>
+                    <label for="author"><input type="text" name="author" id="author" placeholder="Author"
+                            value="" required></label>
+                    <label for="numberOfPages"><input type="number" name="numberOfPages" id="numberOfPages"
+                            placeholder="Number of Pages" value="" required></label>
 
                 </div>
-                <button type="button" onclick="addBookToLibrary()">+</button>
+                <button type="submit" onclick="checkForm()" >+</button>
+                
+                
             </form>
         </div>
 
